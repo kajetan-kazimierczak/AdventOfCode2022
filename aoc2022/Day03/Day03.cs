@@ -14,12 +14,20 @@ namespace aoc2022.Day03
             //var data = "vJrwpWtwJgWrhcsFMMfFFhFp\r\njqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\r\nPmmdzqPrVvPwwTWBwg\r\nwMqvLMZHhHMvwLHjbvcjnnSBnvTQFn\r\nttgJtRGJQctTZtZT\r\nCrZsJsPPZsGzwwsLwLmpwMDw".Split("\r\n");
 
             var ans1 = Part1(data);
+            var ans1_ = Part1UsingHashSets(data);
             var ans2 = Part2(data);
+            var ans2_ = Part2UsingHashSets(data);
 
         }
 
+        private int charToInt(char c) => c switch
+        {
+            >= 'a' and <= 'z' => c - 'a' + 1,
+            >= 'A' and <= 'Z' => c - 'A' + 27,
+            _ => 0
+        };
 
-        private int charToInt(char c)
+        private int charToInt_old(char c)
         {
             if (c >= 'a' && c <= 'z')
             {
@@ -46,7 +54,7 @@ namespace aoc2022.Day03
                 var arr = new int[line.Length];
                 for (var i = 0; i < line.Length; i++)
                 {
-                    arr[i] = charToInt(line[i]);
+                    arr[i] = charToInt_old(line[i]);
                 }
 
                 var half = line.Length / 2;
@@ -92,7 +100,7 @@ namespace aoc2022.Day03
                         {
                             if (elf1[i] == elf2[j] && elf2[j] == elf3[k])
                             {
-                                total += charToInt(elf1[i]);
+                                total += charToInt_old(elf1[i]);
                                 found = true;
                                 break;
                             }
@@ -114,9 +122,48 @@ namespace aoc2022.Day03
 
             return total;
         }
+
+        public int Part1UsingHashSets(string[] data)
+        {
+            var total = 0;
+            foreach (var line in data)
+            {
+                var compartment1 = line.Substring(0,line.Length/2);
+                var compartment2 = line.Substring(line.Length / 2);
+
+                var compartment1set = new HashSet<char>(compartment1);
+                var compartment2set = new HashSet<char>(compartment2);
+                var commonitems = compartment1set.Intersect(compartment2set);
+
+                foreach (var item in commonitems)
+                {
+                    total += charToInt(item);
+                }
+
+            }
+
+            return total;
+        }
+
+
+        public int Part2UsingHashSets(string[] data)
+        {
+            var counter = 0;
+            var total = 0;
+            while (counter < data.Length)
+            {
+                var elf1 = new HashSet<char>(data[counter]);
+                var elf2 = new HashSet<char>(data[counter + 1]);
+                var elf3 = new HashSet<char>(data[counter + 2]);
+                counter += 3;
+
+                var commonItem = elf1.Intersect(elf2).Intersect(elf3).First();
+                total += charToInt(commonItem);
+            }
+
+            return total;
+        }
+
     }
 
-    
-
-   
 }
