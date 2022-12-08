@@ -1,11 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-
-using System.Collections.Immutable;
-using System.Reflection.Metadata;
-using System.Runtime.InteropServices.Marshalling;
-
-Console.WriteLine("Hello, World!");
+﻿Console.WriteLine("Hello, World!");
 
 //new aoc2022.Day01.Day01().Run();
 //new aoc2022.Day02.Day02().Run();
@@ -14,3 +7,5 @@ Console.WriteLine("Hello, World!");
 //new aoc2022.Day05.Day05().Run();
 //new aoc2022.Day06.Day06().Run();
 //new aoc2022.Day07.Day07().Run();
+new aoc2022.Day08.Day08().Run();
+
