@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
@@ -17,6 +17,7 @@
 		<None Remove="Day07\input.txt" />
 		<None Remove="Day08\input.txt" />
 		<None Remove="Day09\input.txt" />
+		<None Remove="Day10\input.txt" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -45,6 +46,9 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Day09\input.txt">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Day10\input.txt">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
